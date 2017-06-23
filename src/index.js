@@ -1,15 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import SearchBar from './components/search_bar'
 
-import App from './components/app';
-import reducers from './reducers';
+const API_KEY = 'AIzaSyBJyFaIceiJhMowbRSwIFlE0gFInDEI-qw'
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+//app component
+const App = () => {
+	return(
+		<div> 
+			<SearchBar />
+		</div>
+	) 
+}
+
+//greeting component
+class Greeting extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
+	render() {
+		return (
+			<div>
+				<p> I am alexis {this.props.lastName} </p>
+				<App />
+			</div>
+		)
+	}
+}
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
-  </Provider>
-  , document.querySelector('.container'));
+	<Greeting lastName = "Herrera" />,
+	document.getElementById("container")
+)
